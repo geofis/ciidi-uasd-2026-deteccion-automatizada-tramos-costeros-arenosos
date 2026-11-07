@@ -1,1 +1,1 @@
-# ciidi-uasd-deteccion-automatizada-tramos-costeros-arenosos
+# ciidi-uasd-2026-deteccion-automatizada-tramos-costeros-arenosos
