@@ -543,21 +543,18 @@ José Ramón Martínez Batlle
 </section>
 <section id="mapa-gee" class="slide level2">
 <h2>Mapa interactivo · aplicación pública de GEE</h2>
-<iframe id="gee-app" title="Aplicación GEE de clasificación costera" src="about:blank" style="width:100%;height:475px;border:1px solid #b8cbd5;border-radius:10px;background:#f2f6f9" loading="lazy">
+<iframe id="gee-app" title="Aplicación GEE de clasificación costera" src="about:blank" style="width:100%;height:650px;border:1px solid #b8cbd5;border-radius:10px;background:#f2f6f9" loading="lazy">
 </iframe>
 <script>
 (function(){
  const url='https://ee-geofis.projects.earthengine.app/view/lc-rd'; // Reemplazar por la URL pública de la app una vez desplegada
  const f=document.getElementById('gee-app');
- if(url){f.src=url;}else{f.srcdoc='<div style="font:20px system-ui;text-align:center;padding:100px 30px;color:#29465a"><b>Aplicación pública GEE pendiente de publicación</b><p>El código funcional de la aplicación está incluido en scripts/app_gee_playas_rd.js. Hasta publicar sus assets y la app, se muestra el mapa estático en la siguiente diapositiva.</p></div>';}
+ if(url){f.src=url;}else{f.srcdoc='<div style="font:20px system-ui;text-align:center;padding:100px 30px;color:#29465a"><b>Aplicación pública GEE</b><p>El código funcional de la aplicación está incluido en el directorio linea-de-costa-rd.</p></div>';}
 })();
 </script>
-<div class="smaller">
-<p>La app se publicará después de importar los GeoTIFF de clasificación y probabilidad como assets de Earth Engine. Google Drive <strong>no es un origen de ráster directamente visualizable</strong> por <code>ee.Image</code>.</p>
-</div>
 </section>
-<section id="alternativa-todo-terreno-por-si-nos-quedamos-sin-internet" class="slide level2">
-<h2>Alternativa “todo terreno”, por si nos quedamos sin internet</h2>
+<section id="alternativa-por-si-nos-quedamos-sin-internet" class="slide level2">
+<h2>Alternativa, por si nos quedamos sin internet</h2>
 
 <!-- ## De la clasificación a CoastSat -->
 <!-- ::: {.r-stack} -->
@@ -578,7 +575,7 @@ José Ramón Martínez Batlle
 <!-- Erosión, acreción, estabilidad y priorización del seguimiento -->
 <!-- ::: -->
 <!-- ::: -->
-<img data-src="figuras/mosaico_clasificacion_nacional.png" class="quarto-figure quarto-figure-center r-stretch"></section>
+<img data-src="figuras/alternativa_gee_interactiva.jpg" class="quarto-figure quarto-figure-center r-stretch"></section>
 <section id="de-la-clasificación-a-coastsat" class="slide level2">
 <h2>De la clasificación a CoastSat</h2>
 <ul>
