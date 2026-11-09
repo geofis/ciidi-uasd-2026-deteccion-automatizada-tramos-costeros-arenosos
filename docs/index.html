@@ -491,10 +491,26 @@ José Ramón Martínez Batlle
 <p>Evaluación V5 del conjunto de validación del entrenamiento; <strong>no</strong> es una validación independiente nacional de los siete sectores.</p>
 </div>
 </section>
-<section id="matriz-de-confusión-de-validación-v5" class="slide level2">
+<section id="matriz-de-confusión-de-validación-v5" class="slide level2 slide-matriz">
 <h2>Matriz de confusión de validación V5</h2>
 
-<img data-src="figuras/matriz_confusion_v5.png" class="quarto-figure quarto-figure-center r-stretch"><div class="smaller">
+<img data-src="figuras/matriz_confusion_v5.png" class="quarto-figure quarto-figure-center r-stretch"><div class="leyenda-matriz">
+<p><strong>Clases</strong></p>
+<p>1 · Urbano/artificial<br>
+2 · Playa arenosa<br>
+3 · Agua<br>
+4 · Vegetación<br>
+5 · Roca/acantilado</p>
+<hr>
+<p><strong>Cómo leerla</strong></p>
+<p><strong>Filas:</strong> realidad<br>
+<strong>Columnas:</strong> predicción<br>
+<strong>Diagonal:</strong> aciertos<br>
+<strong>Fuera:</strong> confusiones</p>
+<p><strong>Principal error:</strong><br>
+Playa ↔︎ roca</p>
+</div>
+<div class="smaller">
 <p>F1 macro ≈ <strong>0,955</strong>; el desequilibrio de clases exige comunicar por separado el rendimiento sobre playa arenosa.</p>
 </div>
 </section>
@@ -503,6 +519,28 @@ José Ramón Martínez Batlle
 
 <img data-src="figuras/mosaico_clasificacion_nacional.png" class="quarto-figure quarto-figure-center r-stretch"><div class="smaller">
 <p>Mosaico de visualización a resolución reducida a partir de los siete GeoTIFF de clases; en los solapes se utiliza la primera clasificación disponible.</p>
+</div>
+</section>
+<section id="cartografía-de-clasificación-siete-sectores-1" class="slide level2">
+<h2>Cartografía de clasificación: siete sectores</h2>
+<div class="columns">
+<div class="column" style="width:50%;">
+<p><strong>Clasificación nacional</strong></p>
+<div class="quarto-figure quarto-figure-center">
+<figure>
+<p><img data-src="figuras/mosaico_clasificacion_nacional.png" class="quarto-figure quarto-figure-center" style="width:100.0%"></p>
+</figure>
+</div>
+</div><div class="column" style="width:50%;">
+<p><strong>Distribución de los siete sectores</strong></p>
+<div class="quarto-figure quarto-figure-center">
+<figure>
+<p><img data-src="figuras/preparacion_qgis.jpg" class="quarto-figure quarto-figure-center" style="width:100.0%"></p>
+</figure>
+</div>
+</div></div>
+<div class="smaller">
+<p>Izquierda: mosaico nacional de visualización a resolución reducida, generado a partir de los siete GeoTIFF de clasificación. Derecha: distribución espacial de los siete sectores de inferencia. En los solapes del mosaico se utiliza la primera clasificación disponible.</p>
 </div>
 </section>
 <section id="superficies-clasificadas-por-sector" class="slide level2">
@@ -522,14 +560,15 @@ José Ramón Martínez Batlle
 <section id="ejemplo-sector-1" class="slide level2">
 <h2>Ejemplo: sector 1</h2>
 
-<img data-src="figuras/sector_01_mapas.png" class="quarto-figure quarto-figure-center r-stretch"><div class="smaller">
-<p>Figura original de la inferencia sectorial: clasificación y representaciones asociadas.</p>
-</div>
-</section>
-<section id="ejemplo-sector-3" class="slide level2">
-<h2>Ejemplo: sector 3</h2>
+<img data-src="figuras/sector_01_mapas.png" class="quarto-figure quarto-figure-center r-stretch"></section>
+<section id="ejemplo-sector-4" class="slide level2">
+<h2>Ejemplo: sector 4</h2>
 
-<img data-src="figuras/sector_03_mapas.png" class="quarto-figure quarto-figure-center r-stretch"></section>
+<img data-src="figuras/sector_04_mapas.png" class="quarto-figure quarto-figure-center r-stretch"></section>
+<section id="ejemplo-sector-6" class="slide level2">
+<h2>Ejemplo: sector 6</h2>
+
+<img data-src="figuras/sector_06_mapas.png" class="quarto-figure quarto-figure-center r-stretch"></section>
 <section id="ejemplo-sector-7" class="slide level2">
 <h2>Ejemplo: sector 7</h2>
 
@@ -538,7 +577,7 @@ José Ramón Martínez Batlle
 <h2>Distribución de probabilidades y confianza</h2>
 
 <img data-src="figuras/sector_01_histogramas.png" style="width:88.0%" class="r-stretch"><div class="smaller">
-<p>Histogramas del sector 1 generados por el cuaderno de inferencia; probabilidades y confianza no son equivalentes a exactitud cartográfica observada.</p>
+<p>Histogramas del sector 1, donde predominan las probabilidades bajas de playa y las confianzas altas en la clase predicha; sin embargo, una confianza elevada no garantiza una clasificación correcta..</p>
 </div>
 </section>
 <section id="mapa-gee" class="slide level2">
@@ -556,25 +595,6 @@ José Ramón Martínez Batlle
 <section id="alternativa-por-si-nos-quedamos-sin-internet" class="slide level2">
 <h2>Alternativa, por si nos quedamos sin internet</h2>
 
-<!-- ## De la clasificación a CoastSat -->
-<!-- ::: {.r-stack} -->
-<!-- ::: {.fragment .fade-in-then-out} -->
-<!-- **1. U-Net** -->
-<!-- Identificación de tramos arenosos candidatos -->
-<!-- ::: -->
-<!-- ::: {.fragment .fade-in-then-out} -->
-<!-- **2. CoastSat** -->
-<!-- Extracción multitemporal de líneas de costa -->
-<!-- ::: -->
-<!-- ::: {.fragment .fade-in-then-out} -->
-<!-- **3. Transectos** -->
-<!-- Desplazamientos, tendencias y heterogeneidad espacial -->
-<!-- ::: -->
-<!-- ::: {.fragment} -->
-<!-- **4. Diagnóstico** -->
-<!-- Erosión, acreción, estabilidad y priorización del seguimiento -->
-<!-- ::: -->
-<!-- ::: -->
 <img data-src="figuras/alternativa_gee_interactiva.jpg" class="quarto-figure quarto-figure-center r-stretch"></section>
 <section id="de-la-clasificación-a-coastsat" class="slide level2">
 <h2>De la clasificación a CoastSat</h2>

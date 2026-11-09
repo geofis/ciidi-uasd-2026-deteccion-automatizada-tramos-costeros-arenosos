@@ -136,9 +136,31 @@ Período de composición: **15 enero–15 marzo de 2025**. Resolución de export
 Evaluación V5 del conjunto de validación del entrenamiento; **no** es una validación independiente nacional de los siete sectores.
 :::
 
-## Matriz de confusión de validación V5
+## Matriz de confusión de validación V5 {.slide-matriz}
 
 ![](figuras/matriz_confusion_v5.png){fig-align="center"}
+
+::: {.leyenda-matriz}
+**Clases**
+
+1 · Urbano/artificial  
+2 · Playa arenosa  
+3 · Agua  
+4 · Vegetación  
+5 · Roca/acantilado
+
+---
+
+**Cómo leerla**
+
+**Filas:** realidad  
+**Columnas:** predicción  
+**Diagonal:** aciertos  
+**Fuera:** confusiones
+
+**Principal error:**  
+Playa ↔ roca
+:::
 
 ::: {.smaller}
 F1 macro ≈ **0,955**; el desequilibrio de clases exige comunicar por separado el rendimiento sobre playa arenosa.
@@ -151,6 +173,39 @@ F1 macro ≈ **0,955**; el desequilibrio de clases exige comunicar por separado 
 ::: {.smaller}
 Mosaico de visualización a resolución reducida a partir de los siete GeoTIFF de clases; en los solapes se utiliza la primera clasificación disponible.
 :::
+
+
+
+
+
+## Cartografía de clasificación: siete sectores
+
+:::: {.columns}
+
+::: {.column width="50%"}
+**Clasificación nacional**
+
+![](figuras/mosaico_clasificacion_nacional.png){fig-align="center" width="100%"}
+:::
+
+::: {.column width="50%"}
+**Distribución de los siete sectores**
+
+![](figuras/preparacion_qgis.jpg){fig-align="center" width="100%"}
+:::
+
+::::
+
+::: {.smaller}
+Izquierda: mosaico nacional de visualización a resolución reducida,
+generado a partir de los siete GeoTIFF de clasificación.
+Derecha: distribución espacial de los siete sectores de inferencia.
+En los solapes del mosaico se utiliza la primera clasificación disponible.
+:::
+
+
+
+
 
 ## Superficies clasificadas por sector
 
@@ -172,14 +227,13 @@ La suma simple de las siete estimaciones es **196,17 km²**, con posibles dobles
 
 ![](figuras/sector_01_mapas.png){fig-align="center"}
 
-::: {.smaller}
-Figura original de la inferencia sectorial: clasificación y representaciones asociadas.
-:::
+## Ejemplo: sector 4
 
-## Ejemplo: sector 3
+![](figuras/sector_04_mapas.png){fig-align="center"}
 
-![](figuras/sector_03_mapas.png){fig-align="center"}
+## Ejemplo: sector 6
 
+![](figuras/sector_06_mapas.png){fig-align="center"}
 
 ## Ejemplo: sector 7
 
@@ -190,7 +244,7 @@ Figura original de la inferencia sectorial: clasificación y representaciones as
 ![](figuras/sector_01_histogramas.png){width="88%"}
 
 ::: {.smaller}
-Histogramas del sector 1 generados por el cuaderno de inferencia; probabilidades y confianza no son equivalentes a exactitud cartográfica observada.
+Histogramas del sector 1, donde predominan las probabilidades bajas de playa y las confianzas altas en la clase predicha; sin embargo, una confianza elevada no garantiza una clasificación correcta..
 :::
 
 ## Mapa interactivo · aplicación pública de GEE {#mapa-gee}
@@ -209,37 +263,6 @@ Histogramas del sector 1 generados por el cuaderno de inferencia; probabilidades
 ## Alternativa, por si nos quedamos sin internet
 
 ![](figuras/alternativa_gee_interactiva.jpg){fig-align="center"}
-
-
-<!-- ## De la clasificación a CoastSat -->
-
-<!-- ::: {.r-stack} -->
-
-<!-- ::: {.fragment .fade-in-then-out} -->
-<!-- **1. U-Net** -->
-
-<!-- Identificación de tramos arenosos candidatos -->
-<!-- ::: -->
-
-<!-- ::: {.fragment .fade-in-then-out} -->
-<!-- **2. CoastSat** -->
-
-<!-- Extracción multitemporal de líneas de costa -->
-<!-- ::: -->
-
-<!-- ::: {.fragment .fade-in-then-out} -->
-<!-- **3. Transectos** -->
-
-<!-- Desplazamientos, tendencias y heterogeneidad espacial -->
-<!-- ::: -->
-
-<!-- ::: {.fragment} -->
-<!-- **4. Diagnóstico** -->
-
-<!-- Erosión, acreción, estabilidad y priorización del seguimiento -->
-<!-- ::: -->
-
-<!-- ::: -->
 
 ## De la clasificación a CoastSat
 
