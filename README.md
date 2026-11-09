@@ -20,3 +20,20 @@ La identificación de playas arenosas es un paso necesario para evaluar sistemá
 ## Recursos
 
 - [Presentación interactiva](https://geofis.github.io/ciidi-uasd-2026-deteccion-automatizada-tramos-costeros-arenosos/)
+
+## Algunas instrucciones
+
+- Para generar la presentación HTML autocontenida, ejecutar en Bash:
+
+```bash
+mkdir -p /tmp/ciidi-autocontenido
+quarto render index.qmd \
+  --to revealjs \
+  --output index_autocontenido.html \
+  --output-dir /tmp/ciidi-autocontenido \
+  -M self-contained:true \
+  -M embed-resources:true
+mv /tmp/ciidi-autocontenido/index_autocontenido.html docs/presentacion-autocontenida.html
+# NO OLVIDAR VOLVER A RENDERIZAR index.qmd y generar PDF (ver abajo) para que la presentación interactiva vuelva a usar recursos externos.
+```
+- Para generar el PDF de la presentación, ejecutar en la consola de R (PRIMERO RENDERIZAR index.qmd) `pagedown::chrome_print("docs/index.html", output = "docs/index.pdf")`

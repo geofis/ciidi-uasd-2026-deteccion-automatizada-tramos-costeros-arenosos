@@ -226,6 +226,92 @@ Las superficies proceden de los CSV de inferencia. **No sumar como superficie na
 La suma simple de las siete estimaciones es **196,17 km²**, con posibles dobles conteos por solapes. Es superficie de píxeles etiquetados «playa», no longitud de costa ni inventario validado de playas.
 :::
 
+<style>
+.reveal table.tabla-playas {font-size: 0.63em; width: 100%;}
+.reveal table.tabla-playas th, .reveal table.tabla-playas td {
+  padding: 0.20em 0.35em;
+}
+</style>
+
+## Longitud costera por clase U-Net (intersección con S2Coast)
+
+![](figuras/longitud_por_clase.png){fig-align="center" width="88%"}
+
+::: {.smaller}
+Longitudes estimadas por muestreo regular de la línea S2Coast sobre el mosaico de clasificación. **Playa arenosa: 630,24 km** (34,92 % de los 1.804,74 km de costa analizados; 35,24 % de la longitud con clasificación válida).
+:::
+
+## Tabla de longitud costera por clase (intersección con S2Coast)
+
+```{r tabla-longitud-clases, results='asis'}
+ruta_clases <- "resultados/proporcion-playa/tabla_todas_las_clases.csv"
+if (file.exists(ruta_clases)) {
+  tabla_clases <- read.csv(ruta_clases, check.names = FALSE)
+  tabla_clases <- tabla_clases[, c("nombre_clase", "longitud_km", "porcentaje_total", "porcentaje_con_datos")]
+  names(tabla_clases) <- c("Clase", "Longitud (km)", "% costa total", "% costa con datos")
+  tabla_clases[-1] <- lapply(tabla_clases[-1], function(x) round(as.numeric(x), 2))
+  cat(knitr::kable(tabla_clases, format = "html", escape = TRUE,
+                   table.attr = 'class="tabla-playas"'))
+} else {
+  cat("**No se encuentra la tabla:** `", ruta_clases, "`. Ejecute primero el cuaderno de análisis.", sep = "")
+}
+```
+
+::: {.smaller}
+La suma de las clases representa la costa con clasificación válida, no necesariamente la longitud total de S2Coast.
+:::
+
+## Longitud y proporción de playa según el método (intersección con S2Coast)
+
+```{r tabla-longitudes-playa, results='asis'}
+ruta_tabla <- "resultados/proporcion-playa/tabla_comparativa_final.csv"
+if (file.exists(ruta_tabla)) {
+  tabla <- read.csv(ruta_tabla, check.names = FALSE)
+  tabla <- tabla[, c("metodo", "longitud_playa_km", "porcentaje_total", "porcentaje_con_datos")]
+  names(tabla) <- c("Método", "Longitud (km)", "% costa total", "% costa con datos")
+  tabla[-1] <- lapply(tabla[-1], function(x) round(as.numeric(x), 2))
+  cat(knitr::kable(tabla, format = "html", escape = TRUE,
+                   table.attr = 'class="tabla-playas"'))
+} else {
+  cat("**No se encuentra la tabla:** `", ruta_tabla, "`. Ejecute primero el cuaderno de análisis.", sep = "")
+}
+```
+
+::: {.smaller}
+La clasificación multiclase (`argmax`) y los umbrales de probabilidad responden a reglas de decisión diferentes. Los porcentajes sobre la costa total incluyen los tramos sin predicción en el denominador.
+:::
+
+## Sensibilidad de la longitud de playa al umbral (intersección con S2Coast)
+
+![](figuras/longitud_segun_umbral.png){fig-align="center" width="88%"}
+
+::: {.smaller}
+La longitud disminuye de **1.060,70 km** (probabilidad ≥ 0,1) a **174,34 km** (≥ 0,9). Para probabilidad ≥ 0,5 se obtienen **514,38 km**, frente a **630,24 km** de la clasificación U-Net.
+:::
+
+## Comparación de longitudes costeras
+
+::: {.columns}
+::: {.column width="50%"}
+**Clasificación multiclase**
+
+- Playa arenosa: **630,24 km**.
+- **34,92 %** de toda la línea S2Coast.
+- **35,24 %** de la costa con clasificación válida.
+:::
+::: {.column width="50%"}
+**Probabilidad de playa ≥ 0,5**
+
+- Playa probable: **514,38 km**.
+- **28,50 %** de toda la línea S2Coast.
+- **28,76 %** de la costa con probabilidad válida.
+:::
+:::
+
+::: {.smaller}
+La línea de referencia tiene **1.804,74 km**, de los cuales **1.788,30 km** cuentan con inferencia válida. Son estimaciones sobre S2Coast, no una delimitación independiente de playas verificada en campo. La sensibilidad al umbral debe interpretarse como un análisis de escenarios, no como validación de precisión.
+:::
+
 ## Ejemplo: sector 1
 
 ![](figuras/sector_01_mapas.png){fig-align="center"}
