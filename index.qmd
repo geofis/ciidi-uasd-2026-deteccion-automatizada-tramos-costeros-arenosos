@@ -2,8 +2,8 @@
 title: "Detección automatizada de tramos costeros arenosos para el análisis multitemporal de playas de República Dominicana."
 subtitle: "V Congreso Internacional de Investigación, Desarrollo e Innovación (I+D+I), UASD, 2026"
 author: "José Ramón Martínez Batlle"
-institute: "Universidad Autónoma de Santo Domingo · Facultad de Ciencias · Escuela de Ciencias Geográficas"
-date: "2026"
+institute: "Universidad Autónoma de Santo Domingo · Facultad de Ciencias"
+date: "2026-11-18"
 format:
   revealjs:
     theme: [simple, estilos.scss]
