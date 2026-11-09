@@ -2,7 +2,9 @@
 title: "Detección automatizada de tramos costeros arenosos para el análisis multitemporal de playas de República Dominicana."
 subtitle: "V Congreso Internacional de Investigación, Desarrollo e Innovación (I+D+I), UASD, 2026"
 author: "José Ramón Martínez Batlle"
-institute: "Universidad Autónoma de Santo Domingo · Facultad de Ciencias"
+institute: |
+  Universidad Autónoma de Santo Domingo · Facultad de Ciencias <br>
+  [Ver presentación en GitHub Pages: <br> https://geofis.github.io/ciidi-uasd-2026-deteccion-automatizada-tramos-costeros-arenosos/](https://geofis.github.io/ciidi-uasd-2026-deteccion-automatizada-tramos-costeros-arenosos/)
 date: "2026-11-18"
 format:
   revealjs:
@@ -20,6 +22,7 @@ format:
 
 execute:
   echo: false
+include-in-header: qr-portada.html
 ---
 
 ## ¿Dónde están las playas que debemos monitorear?
