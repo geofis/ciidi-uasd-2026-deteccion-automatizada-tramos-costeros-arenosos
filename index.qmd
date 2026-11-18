@@ -391,16 +391,15 @@ Ejemplo procedente del análisis previo de Trudillé. Ilustra la etapa de diagn�
 
 ## Trudillé: evolución temporal
 
-![](figuras/evolucion_global.png){width="92%"}
+![](figuras/evolucion_global.png){width="92%" fig-align="center"}
+
+## Trudillé: tendencias y modelos
+
+![](figuras/mapa_transectos_LRR.png){fig-align="center"}
 
 ## Trudillé: tendencias y modelos
 
 ![](figuras/concordancia_mixto_LRR.png){fig-align="center"}
-
-
-## Trudillé: tendencias y modelos
-
-![](figuras/mapa_tasas_mixtas.png){fig-align="center"}
 
 ## Limitaciones y controles necesarios
 

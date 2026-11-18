@@ -33,7 +33,7 @@ quarto render index.qmd \
   --output-dir /tmp/ciidi-autocontenido \
   -M self-contained:true \
   -M embed-resources:true
-mv /tmp/ciidi-autocontenido/index_autocontenido.html docs/presentacion-autocontenida.html
+mv /tmp/ciidi-autocontenido/index_autocontenido.html "docs/José Martínez + Detección automatizada de tramos costeros arenosos para el análisis multitemporal de playas de República Dominicana + 19 de noviembre + Sala LAB-FIA-406.html"
 # NO OLVIDAR VOLVER A RENDERIZAR index.qmd y generar PDF (ver abajo) para que la presentación interactiva vuelva a usar recursos externos.
 ```
-- Para generar el PDF de la presentación, ejecutar en la consola de R (PRIMERO RENDERIZAR index.qmd) `pagedown::chrome_print("docs/index.html", output = "docs/index.pdf")`
+- Para generar el PDF de la presentación, ejecutar en la consola de R (PRIMERO RENDERIZAR index.qmd) `pagedown::chrome_print("docs/index.html", output = "docs/José Martínez + Detección automatizada de tramos costeros arenosos para el análisis multitemporal de playas de República Dominicana + 19 de noviembre + Sala LAB-FIA-406.pdf")`
