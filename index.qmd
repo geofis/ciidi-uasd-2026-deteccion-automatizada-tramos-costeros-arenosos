@@ -99,6 +99,13 @@ Cuadrícula de referencia de **100 × 100 km**, siete sectores; buffer de **1 km
 | NASADEM | elevación, pendiente | 2 |
 | **Total** | | **22** |
 
+**Fuente cartográfica de referencia: S2Coast-2023** (Duan et al., 2026)
+
+- **Delimitación del ámbito** de análisis costero.
+- Referencia geométrica para la **segmentación y cuantificación de 
+  longitudes costeras**.
+- No interviene como predictor de la U-Net.
+
 Período de composición: **15 enero–15 marzo de 2025**. Resolución de exportación: **10 m**.
 
 ## Arquitectura y entrenamiento
@@ -108,6 +115,24 @@ Período de composición: **15 enero–15 marzo de 2025**. Resolución de export
 - Normalización a partir de las estadísticas del entrenamiento.
 - Entrenamiento con etiquetas espaciales parciales y pérdida enmascarada.
 - Modelo guardado en formato `.keras` y aplicado posteriormente en Colab.
+
+## Etiquetado espacial: ejemplos (1/3)
+
+![](figuras/poligonos_entrenamiento_a.gif){width="100%" fig-align="center"}
+
+**Santo Domingo:** contraste entre superficies urbanas y ambientes costeros.
+
+## Etiquetado espacial: ejemplos (2/3)
+
+![](figuras/poligonos_entrenamiento_b.gif){width="100%" fig-align="center"}
+
+**Punta Rucia:** playas arenosas y otras coberturas costeras.
+
+## Etiquetado espacial: ejemplos (3/3)
+
+![](figuras/poligonos_entrenamiento_c.gif){width="100%" fig-align="center"}
+
+**Monte Cristi:** diversidad de ambientes litorales.
 
 ## Del entrenamiento a la cartografía nacional
 
@@ -139,9 +164,69 @@ Período de composición: **15 enero–15 marzo de 2025**. Resolución de export
 Evaluación V5 del conjunto de validación del entrenamiento; **no** es una validación independiente nacional de los siete sectores.
 :::
 
+## Métricas de evaluación de la clasificación
+
+:::: {.columns}
+
+::: {.column width="33%"}
+
+$$
+P = \frac{VP}{VP + FP}
+$$
+
+**Precisión** (*Precision*)
+
+De lo **predicho** como playa, ¿cuánto era realmente playa?
+
+- **Pureza** de la predicción.
+- Penaliza la **comisión**.
+
+:::
+
+::: {.column width="33%"}
+
+$$
+R = \frac{VP}{VP + FN}
+$$
+
+**Exhaustividad** (*Recall*)
+
+De la playa **real**, ¿cuánta logró detectar el modelo?
+
+- **Capacidad de detección**.
+- Penaliza la **omisión**.
+
+:::
+
+::: {.column width="34%"}
+
+$$
+F_1 = 2 \frac{P \cdot R}{P + R}
+$$
+
+**Puntuación F1** (*F1-score*)
+
+Media armónica de la precisión y la exhaustividad.
+
+- **Equilibrio** entre ambas.
+- Penaliza valores bajos de cualquiera de ellas.
+
+:::
+
+::::
+
+::: {style="font-size: 0.75em;"}
+**VP:** verdaderos positivos ·
+**FP:** falsos positivos ·
+**FN:** falsos negativos.
+
+**Matriz de confusión** (filas = referencia; columnas = predicción):
+precisión por **columnas**, exhaustividad por **filas**.
+:::
+
 ## Matriz de confusión de validación V5 {.slide-matriz}
 
-![](figuras/matriz_confusion_v5.png){fig-align="center"}
+![](figuras/matriz_confusion_v5.png)
 
 ::: {.leyenda-matriz}
 **Clases**
@@ -156,8 +241,8 @@ Evaluación V5 del conjunto de validación del entrenamiento; **no** es una vali
 
 **Cómo leerla**
 
-**Filas:** realidad  
-**Columnas:** predicción  
+**Filas:** exhaustividad (*recall*), penaliza <u>Omisión</u> ($\downarrow FN$)  
+**Columnas:** precisión, penaliza <u>Comisión</u> ($\downarrow FP$)  
 **Diagonal:** aciertos  
 **Fuera:** confusiones
 

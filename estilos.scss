@@ -122,13 +122,14 @@ $presentation-font-size-root: 35px;
 /* Leyenda flotante de la matriz de confusión */
 .reveal .slide-matriz {
   position: relative;
+  left: 0px;
 }
 
 .reveal .slide-matriz .leyenda-matriz {
   position: absolute;
-  right: -38px;
+  right: 0px;
   top: 100px;
-  width: 250px;
+  width: 600px;
 
   padding: 12px 14px;
   border: 1px solid #c9d7df;

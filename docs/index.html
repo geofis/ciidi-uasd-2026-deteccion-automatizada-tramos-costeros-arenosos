@@ -468,6 +468,12 @@ José Ramón Martínez Batlle
 </tr>
 </tbody>
 </table>
+<p><strong>Fuente cartográfica de referencia: S2Coast-2023</strong> (Duan et al., 2026)</p>
+<ul>
+<li><strong>Delimitación del ámbito</strong> de análisis costero.</li>
+<li>Referencia geométrica para la <strong>segmentación y cuantificación de longitudes costeras</strong>.</li>
+<li>No interviene como predictor de la U-Net.</li>
+</ul>
 <p>Período de composición: <strong>15 enero–15 marzo de 2025</strong>. Resolución de exportación: <strong>10 m</strong>.</p>
 </section>
 <section id="arquitectura-y-entrenamiento" class="slide level2">
@@ -479,6 +485,21 @@ José Ramón Martínez Batlle
 <li>Entrenamiento con etiquetas espaciales parciales y pérdida enmascarada.</li>
 <li>Modelo guardado en formato <code>.keras</code> y aplicado posteriormente en Colab.</li>
 </ul>
+</section>
+<section id="etiquetado-espacial-ejemplos-13" class="slide level2">
+<h2>Etiquetado espacial: ejemplos (1/3)</h2>
+
+<img data-src="figuras/poligonos_entrenamiento_a.gif" class="quarto-figure quarto-figure-center r-stretch" style="width:100.0%"><p><strong>Santo Domingo:</strong> contraste entre superficies urbanas y ambientes costeros.</p>
+</section>
+<section id="etiquetado-espacial-ejemplos-23" class="slide level2">
+<h2>Etiquetado espacial: ejemplos (2/3)</h2>
+
+<img data-src="figuras/poligonos_entrenamiento_b.gif" class="quarto-figure quarto-figure-center r-stretch" style="width:100.0%"><p><strong>Punta Rucia:</strong> playas arenosas y otras coberturas costeras.</p>
+</section>
+<section id="etiquetado-espacial-ejemplos-33" class="slide level2">
+<h2>Etiquetado espacial: ejemplos (3/3)</h2>
+
+<img data-src="figuras/poligonos_entrenamiento_c.gif" class="quarto-figure quarto-figure-center r-stretch" style="width:100.0%"><p><strong>Monte Cristi:</strong> diversidad de ambientes litorales.</p>
 </section>
 <section id="del-entrenamiento-a-la-cartografía-nacional" class="slide level2">
 <h2>Del entrenamiento a la cartografía nacional</h2>
@@ -508,10 +529,49 @@ José Ramón Martínez Batlle
 <p>Evaluación V5 del conjunto de validación del entrenamiento; <strong>no</strong> es una validación independiente nacional de los siete sectores.</p>
 </div>
 </section>
+<section id="métricas-de-evaluación-de-la-clasificación" class="slide level2">
+<h2>Métricas de evaluación de la clasificación</h2>
+<div class="columns">
+<div class="column" style="width:33%;">
+<p><span class="math display">\[
+P = \frac{VP}{VP + FP}
+\]</span></p>
+<p><strong>Precisión</strong> (<em>Precision</em>)</p>
+<p>De lo <strong>predicho</strong> como playa, ¿cuánto era realmente playa?</p>
+<ul>
+<li><strong>Pureza</strong> de la predicción.</li>
+<li>Penaliza la <strong>comisión</strong>.</li>
+</ul>
+</div><div class="column" style="width:33%;">
+<p><span class="math display">\[
+R = \frac{VP}{VP + FN}
+\]</span></p>
+<p><strong>Exhaustividad</strong> (<em>Recall</em>)</p>
+<p>De la playa <strong>real</strong>, ¿cuánta logró detectar el modelo?</p>
+<ul>
+<li><strong>Capacidad de detección</strong>.</li>
+<li>Penaliza la <strong>omisión</strong>.</li>
+</ul>
+</div><div class="column" style="width:34%;">
+<p><span class="math display">\[
+F_1 = 2 \frac{P \cdot R}{P + R}
+\]</span></p>
+<p><strong>Puntuación F1</strong> (<em>F1-score</em>)</p>
+<p>Media armónica de la precisión y la exhaustividad.</p>
+<ul>
+<li><strong>Equilibrio</strong> entre ambas.</li>
+<li>Penaliza valores bajos de cualquiera de ellas.</li>
+</ul>
+</div></div>
+<div style="font-size: 0.75em;">
+<p><strong>VP:</strong> verdaderos positivos · <strong>FP:</strong> falsos positivos · <strong>FN:</strong> falsos negativos.</p>
+<p><strong>Matriz de confusión</strong> (filas = referencia; columnas = predicción): precisión por <strong>columnas</strong>, exhaustividad por <strong>filas</strong>.</p>
+</div>
+</section>
 <section id="matriz-de-confusión-de-validación-v5" class="slide level2 slide-matriz">
 <h2>Matriz de confusión de validación V5</h2>
 
-<img data-src="figuras/matriz_confusion_v5.png" class="quarto-figure quarto-figure-center r-stretch"><div class="leyenda-matriz">
+<img data-src="figuras/matriz_confusion_v5.png" class="r-stretch"><div class="leyenda-matriz">
 <p><strong>Clases</strong></p>
 <p>1 · Urbano/artificial<br>
 2 · Playa arenosa<br>
@@ -520,8 +580,8 @@ José Ramón Martínez Batlle
 5 · Roca/acantilado</p>
 <hr>
 <p><strong>Cómo leerla</strong></p>
-<p><strong>Filas:</strong> realidad<br>
-<strong>Columnas:</strong> predicción<br>
+<p><strong>Filas:</strong> exhaustividad (<em>recall</em>), penaliza <u>Omisión</u> (<span class="math inline">\(\downarrow FN\)</span>)<br>
+<strong>Columnas:</strong> precisión, penaliza <u>Comisión</u> (<span class="math inline">\(\downarrow FP\)</span>)<br>
 <strong>Diagonal:</strong> aciertos<br>
 <strong>Fuera:</strong> confusiones</p>
 <p><strong>Principal error:</strong><br>
